@@ -1,0 +1,17 @@
+B1: Tạo config của office trên https://config.office.com/ rồi export dưới dạng XML => lưu vào folder X
+B2: Download deployment office tool ⇒ genertate nó vào 1 folder X
+B3: Mở CMD => run as administrator => chạy lệnh: setup.exe /configure Configuration.xml (File xml ở B1)
+B4: Chạy các cách sau để active office
+//1 Chạy từng dòng 1 => chạy ở folder chứa office được download bởi deployment tool.
+cscript ospp.vbs /sethst:kms.digiboy.ir
+cscript ospp.vbs /inpkey:FXYTK-NJJ8C-GB6DW-3DYQT-6F7TH
+cscript ospp.vbs /act
+
+//2 Chạy từng lệnh 1 hoặc lưu dưới dạng .bat hoặc .cmd để chạy.
+if exist "C:\Program Files\Microsoft Office\Office16\ospp.vbs" cd /d "C:\Program Files\Microsoft Office\Office16"
+if exist "C:\Program Files (x86)\Microsoft Office\Office16\ospp.vbs" cd /d "C:\Program Files (x86)\Microsoft Office\Office16"
+for /f %%x in ('dir /b ..\root\Licenses16\ProPlus2021VL_KMS*.xrm-ms') do cscript ospp.vbs /inslic:"..\root\Licenses16\%%x"
+cscript ospp.vbs /inpkey:FXYTK-NJJ8C-GB6DW-3DYQT-6F7TH
+cscript ospp.vbs /sethst:kms.msgang.com
+cscript ospp.vbs /act
+pause
